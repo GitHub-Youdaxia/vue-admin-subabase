@@ -5,10 +5,9 @@
 				<el-tab-pane v-for="item in tabsMenuList" :key="item.path" :label="item.title" :name="item.path" :closable="item.close">
 					<template #label>
 						<el-button
-							size="text"
 							class="tab-button"
 							:icon="themeConfig.tabsIcon ? item.icon : ''"
-							:type="tabsMenuValue === item.path ? 'primary' : ''"
+							:type="tabsMenuValue === item.path ? 'text' : ''"
 						>
 							{{ item.title }}
 						</el-button>
