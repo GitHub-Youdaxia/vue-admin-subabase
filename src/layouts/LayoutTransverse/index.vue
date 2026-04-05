@@ -4,7 +4,7 @@
 		<el-header>
 			<div class="logo flx-center">
 				<img src="@/assets/images/logo.svg" alt="logo" />
-				<span>vue-diverse-admin</span>
+				<span>{{ APP_NAME }}</span>
 			</div>
 			<el-menu
 				mode="horizontal"
