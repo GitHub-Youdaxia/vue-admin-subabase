@@ -10,7 +10,7 @@
       <el-table :data="teamList" style="width: 100%">
         <el-table-column prop="name" label="姓名" width="120" />
         <el-table-column prop="position" label="职位" width="150" />
-        <el-table-column prop="bio" label="简介" />
+        <el-table-column prop="bio" show-overflow-tooltip="" label="简介" />
         <el-table-column label="操作" width="150" fixed="right">
           <template #default="scope">
             <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>

@@ -9,6 +9,7 @@
       </template>
       <el-table :data="newsList" style="width: 100%">
         <el-table-column prop="title" label="新闻标题" width="250" />
+        <el-table-column prop="content" show-overflow-tooltip label="新闻内容" width="250" />
         <el-table-column prop="category" label="分类" width="100" />
         <el-table-column prop="publish_date" label="发布日期" width="150" />
         <el-table-column label="操作" width="150" fixed="right">

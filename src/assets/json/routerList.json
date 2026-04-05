@@ -80,6 +80,36 @@
 						"isAffix": false,
 						"isKeepAlive": true
 					}
+				},
+				{
+					"path": "/company/news",
+					"name": "news",
+					"component": "/news/index",
+					"id": "j3",
+					"parentId": "j",
+					"title": "新闻动态",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/company/recruit",
+					"name": "recruit",
+					"component": "/recruit/index",
+					"id": "j4",
+					"parentId": "j",
+					"title": "招聘信息",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
 				}
 			]
 		},
@@ -147,22 +177,7 @@
 				}
 			]
 		},
-		{
-			"path": "/news",
-			"name": "news",
-			"component": "/news/index",
-			"id": "l",
-			"parentId": null,
-			"title": "新闻动态",
-			"meta": {
-				"icon": "Reading",
-				"isLink": "",
-				"isHide": false,
-				"isFull": false,
-				"isAffix": false,
-				"isKeepAlive": true
-			}
-		},
+
 		{
 			"path": "/case",
 			"name": "case",
@@ -261,22 +276,6 @@
 				}
 			]
 		},
-		{
-			"path": "/recruit",
-			"name": "recruit",
-			"component": "/recruit/index",
-			"id": "o",
-			"parentId": null,
-			"title": "招聘信息",
-			"meta": {
-				"icon": "UserFilled",
-				"isLink": "",
-				"isHide": false,
-				"isFull": false,
-				"isAffix": false,
-				"isKeepAlive": true
-			}
-		},		
 		{
 			"path": "/auth",
 			"name": "auth",

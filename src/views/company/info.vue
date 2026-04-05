@@ -9,9 +9,9 @@
       </template>
       <el-table :data="companyList" style="width: 100%">
         <el-table-column prop="name" label="公司名称" width="180" />
-        <el-table-column prop="description" label="公司简介" />
-        <el-table-column prop="vision" label="公司愿景" width="200" />
-        <el-table-column prop="mission" label="公司使命" width="200" />
+        <el-table-column prop="description" show-overflow-tooltip label="公司简介" />
+        <el-table-column prop="vision" show-overflow-tooltip label="公司愿景" width="200" />
+        <el-table-column prop="mission" show-overflow-tooltip label="公司使命" width="200" />
         <el-table-column label="操作" width="150" fixed="right">
           <template #default="scope">
             <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
