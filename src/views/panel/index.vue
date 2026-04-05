@@ -4,7 +4,7 @@
 			<div class="card h-300">
 				<div class="title">总金额</div>
 				<div class="count">
-					<CountTo prefix="$" :cutting="true" :endVal="10009988000" />
+					<CountTo prefix="$" :cutting="true" :end-val="10009988000" />
 				</div>
 				<progressBar />
 				<div class="graphical">
@@ -44,7 +44,7 @@
 						</el-table-column>
 						<el-table-column prop="money" label="成交金额">
 							<template #default="scope">
-								<CountTo prefix="$" :cutting="true" :endVal="scope.row.money" />
+								<CountTo prefix="$" :cutting="true" :end-val="scope.row.money" />
 							</template>
 						</el-table-column>
 					</el-table>
@@ -59,7 +59,7 @@
 	</el-row>
 </template>
 
-<script setup name="panel">
+<script setup name="PanelIndex">
 import CountTo from "@/components/CountTo";
 import PancelLine from "./components/PancelLine.vue";
 import progressBar from "./components/progressBar.vue";
