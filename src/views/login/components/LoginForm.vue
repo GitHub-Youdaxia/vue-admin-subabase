@@ -1,14 +1,14 @@
 <template>
 	<el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" size="large">
 		<el-form-item prop="username">
-			<el-input v-model="loginForm.username" placeholder="用户名：随便填">
+			<el-input v-model="loginForm.username" placeholder="邮箱：test@example.com">
 				<template #prefix>
 					<el-icon class="el-input__icon"><user /></el-icon>
 				</template>
 			</el-input>
 		</el-form-item>
 		<el-form-item prop="password">
-			<el-input type="password" v-model="loginForm.password" placeholder="密码：随便填" show-password autocomplete="new-password">
+			<el-input type="password" v-model="loginForm.password" placeholder="密码：至少6位" show-password autocomplete="new-password">
 				<template #prefix>
 					<el-icon class="el-input__icon"><lock /></el-icon>
 				</template>
@@ -28,7 +28,7 @@ import { ElNotification } from "element-plus";
 import { GlobalStore } from "@/stores";
 import { TabsStore } from "@/stores/modules/tabs";
 import { HOME_URL } from "@/config/config";
-import { pageLogin } from "@/api/login";
+import { supabaseAuthService } from "@/api/supabaseAuth";
 import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
 import { KeepAliveStore } from "@/stores/modules/keepAlive";
 
@@ -40,7 +40,7 @@ const keepAlive = KeepAliveStore();
 // 定义 formRef（校验规则）
 const loginFormRef = ref();
 const loginRules = reactive({
-	username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+	username: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
 	password: [{ required: true, message: "请输入密码", trigger: "blur" }]
 });
 
@@ -52,16 +52,34 @@ const login = formEl => {
 		if (!valid) return;
 		loading.value = true;
 		try {
-			const { data } = await pageLogin();
-			globalStore.setToken(data.token);
+			const { user, session } = await supabaseAuthService.loginWithEmail(
+				loginForm.username,
+				loginForm.password
+			);
+			
+			// 设置token和用户信息
+			globalStore.setToken(session.access_token);
+			globalStore.setUserInfo({
+				name: user.email.split('@')[0],
+				email: user.email,
+				id: user.id
+			});
+			
 			await initDynamicRouter();
 			tabsStore.closeMultipleTab();
 			keepAlive.setKeepAliveName();
 			router.push(HOME_URL);
 			ElNotification({
-				title: data.name,
+				title: user.email.split('@')[0],
 				message: "欢迎登录 vue-diverse-admin",
 				type: "success",
+				duration: 3000
+			});
+		} catch (error) {
+			ElNotification({
+				title: "登录失败",
+				message: error.message || "请检查邮箱和密码是否正确",
+				type: "error",
 				duration: 3000
 			});
 		} finally {

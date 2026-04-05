@@ -7,7 +7,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import viteCompression from "vite-plugin-compression";
 import VueSetupExtend from "vite-plugin-vue-setup-extend";
-import eslintPlugin from "vite-plugin-eslint";
+// import eslintPlugin from "vite-plugin-eslint";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
@@ -38,6 +38,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			port: viteEnv.VITE_PORT,
 			open: viteEnv.VITE_OPEN,
 			cors: true,
+			hmr: {
+				overlay: true,// 开启 hmr 时，是否在浏览器中显示 hmr 信息
+			},
 			// 跨域代理配置
 			proxy: {
 				"/api": {
@@ -62,7 +65,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 				symbolId: "icon-[dir]-[name]"
 			}),
 			// * EsLint 报错信息显示在浏览器界面上
-			eslintPlugin(),
+		// eslintPlugin(),
 			// * vite 可以使用 jsx/tsx 语法
 			vueJsx(),
 			// * name 可以写在 script 标签上
