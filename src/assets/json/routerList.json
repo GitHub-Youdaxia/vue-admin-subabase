@@ -84,7 +84,7 @@
 				{
 					"path": "/company/news",
 					"name": "news",
-					"component": "/news/index",
+					"component": "/company/news",
 					"id": "j3",
 					"parentId": "j",
 					"title": "新闻动态",
@@ -99,7 +99,7 @@
 				{
 					"path": "/company/recruit",
 					"name": "recruit",
-					"component": "/recruit/index",
+					"component": "/company/recruit",
 					"id": "j4",
 					"parentId": "j",
 					"title": "招聘信息",
@@ -731,6 +731,22 @@
 			"title": "大屏数据",
 			"meta": {
 				"icon": "Monitor",
+				"isLink": "",
+				"isHide": false,
+				"isFull": true,
+				"isAffix": false,
+				"isKeepAlive": true
+			}
+		},
+		{
+			"path": "/frontWeb",
+			"name": "frontWeb",
+			"component": "/frontWeb/index",
+			"id": "p",
+			"parentId": null,
+			"title": "公司门户",
+			"meta": {
+				"icon": "House",
 				"isLink": "",
 				"isHide": false,
 				"isFull": true,
