@@ -1,7 +1,7 @@
 //  项目名称
 export const APP_NAME = "后台管理平台";
 // 首页地址（默认）
-export const HOME_URL = "/";
+export const HOME_URL = "/home/index";
 
 // 登录页地址（默认）
 export const LOGIN_URL = "/login";
