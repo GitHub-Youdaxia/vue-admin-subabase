@@ -19,6 +19,30 @@
         </el-table-column>
       </el-table>
     </el-card>
+
+    <!-- 添加/编辑对话框 -->
+    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="600px">
+      <el-form :model="formData" :rules="formRules" ref="formRef" label-width="80px">
+        <el-form-item label="方案名称" prop="name">
+          <el-input v-model="formData.name" placeholder="请输入方案名称" />
+        </el-form-item>
+        <el-form-item label="行业" prop="industry">
+          <el-input v-model="formData.industry" placeholder="请输入行业" />
+        </el-form-item>
+        <el-form-item label="方案描述" prop="description">
+          <el-input v-model="formData.description" type="textarea" rows="3" placeholder="请输入方案描述" />
+        </el-form-item>
+        <el-form-item label="方案图片" prop="image">
+          <el-input v-model="formData.image" placeholder="请输入方案图片URL" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="handleSubmit">确定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -28,6 +52,19 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import { solutionsService } from '@/api/company';
 
 const solutionList = ref([]);
+const dialogVisible = ref(false);
+const dialogTitle = ref('');
+const formRef = ref();
+const formData = ref({
+  name: '',
+  industry: '',
+  description: '',
+  image: ''
+});
+const formRules = {
+  name: [{ required: true, message: '请输入方案名称', trigger: 'blur' }],
+  description: [{ required: true, message: '请输入方案描述', trigger: 'blur' }]
+};
 
 onMounted(() => {
   fetchSolutionList();
@@ -43,11 +80,43 @@ const fetchSolutionList = async () => {
 };
 
 const handleAdd = () => {
-  // 打开添加对话框
+  dialogTitle.value = '添加解决方案';
+  formData.value = {
+    name: '',
+    industry: '',
+    description: '',
+    image: ''
+  };
+  dialogVisible.value = true;
 };
 
 const handleEdit = (row) => {
-  // 打开编辑对话框
+  dialogTitle.value = '编辑解决方案';
+  formData.value = { ...row };
+  dialogVisible.value = true;
+};
+
+const handleSubmit = async () => {
+  if (!formRef.value) return;
+  await formRef.value.validate(async (valid) => {
+    if (valid) {
+      try {
+        if (formData.value.id) {
+          // 编辑
+          await solutionsService.update(formData.value);
+          ElMessage.success('编辑成功');
+        } else {
+          // 添加
+          await solutionsService.add(formData.value);
+          ElMessage.success('添加成功');
+        }
+        dialogVisible.value = false;
+        fetchSolutionList();
+      } catch (error) {
+        ElMessage.error('操作失败');
+      }
+    }
+  });
 };
 
 const handleDelete = async (id) => {
@@ -73,5 +142,9 @@ const handleDelete = async (id) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

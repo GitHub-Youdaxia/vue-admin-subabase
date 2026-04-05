@@ -74,8 +74,8 @@ export function createService(tableName) {
 				.from(tableName)
 				.insert({
 					...restData,
-					createTime: new Date().toISOString(),
-					updateTime: new Date().toISOString()
+					created_at: new Date().toISOString(),
+					updated_at: new Date().toISOString()
 				})
 				.select();
 
@@ -94,7 +94,7 @@ export function createService(tableName) {
 				.from(tableName)
 				.update({
 					...rest,
-					updateTime: new Date().toISOString()
+					updated_at: new Date().toISOString()
 				})
 				.eq("id", id);
 

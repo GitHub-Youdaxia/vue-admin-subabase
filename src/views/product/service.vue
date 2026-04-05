@@ -19,6 +19,30 @@
         </el-table-column>
       </el-table>
     </el-card>
+
+    <!-- 添加/编辑对话框 -->
+    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="600px">
+      <el-form :model="formData" :rules="formRules" ref="formRef" label-width="80px">
+        <el-form-item label="服务名称" prop="name">
+          <el-input v-model="formData.name" placeholder="请输入服务名称" />
+        </el-form-item>
+        <el-form-item label="服务描述" prop="description">
+          <el-input v-model="formData.description" type="textarea" rows="3" placeholder="请输入服务描述" />
+        </el-form-item>
+        <el-form-item label="服务流程" prop="process">
+          <el-input v-model="formData.process" placeholder="请输入服务流程，用逗号分隔" />
+        </el-form-item>
+        <el-form-item label="服务价格" prop="price">
+          <el-input v-model="formData.price" placeholder="请输入服务价格" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="handleSubmit">确定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -28,6 +52,19 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import { servicesService } from '@/api/company';
 
 const serviceList = ref([]);
+const dialogVisible = ref(false);
+const dialogTitle = ref('');
+const formRef = ref();
+const formData = ref({
+  name: '',
+  description: '',
+  process: [],
+  price: ''
+});
+const formRules = {
+  name: [{ required: true, message: '请输入服务名称', trigger: 'blur' }],
+  description: [{ required: true, message: '请输入服务描述', trigger: 'blur' }]
+};
 
 onMounted(() => {
   fetchServiceList();
@@ -43,11 +80,54 @@ const fetchServiceList = async () => {
 };
 
 const handleAdd = () => {
-  // 打开添加对话框
+  dialogTitle.value = '添加服务';
+  formData.value = {
+    name: '',
+    description: '',
+    process: [],
+    price: ''
+  };
+  dialogVisible.value = true;
 };
 
 const handleEdit = (row) => {
-  // 打开编辑对话框
+  dialogTitle.value = '编辑服务';
+  // 处理process数组
+  if (Array.isArray(row.process)) {
+    formData.value = { ...row, process: row.process.join(',') };
+  } else {
+    formData.value = { ...row, process: '' };
+  }
+  dialogVisible.value = true;
+};
+
+const handleSubmit = async () => {
+  if (!formRef.value) return;
+  await formRef.value.validate(async (valid) => {
+    if (valid) {
+      try {
+        // 处理process数组
+        const submitData = { ...formData.value };
+        if (typeof submitData.process === 'string') {
+          submitData.process = submitData.process.split(',').map(item => item.trim()).filter(Boolean);
+        }
+        
+        if (submitData.id) {
+          // 编辑
+          await servicesService.update(submitData);
+          ElMessage.success('编辑成功');
+        } else {
+          // 添加
+          await servicesService.add(submitData);
+          ElMessage.success('添加成功');
+        }
+        dialogVisible.value = false;
+        fetchServiceList();
+      } catch (error) {
+        ElMessage.error('操作失败');
+      }
+    }
+  });
 };
 
 const handleDelete = async (id) => {
@@ -73,5 +153,9 @@ const handleDelete = async (id) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
