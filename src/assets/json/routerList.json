@@ -35,6 +35,249 @@
 			}
 		},
 		{
+			"path": "/company",
+			"name": "company",
+			"redirect": "/company/info",
+			"id": "j",
+			"parentId": null,
+			"title": "公司管理",
+			"parentCheck": true,
+			"meta": {
+				"icon": "OfficeBuilding",
+				"isLink": "",
+				"isHide": false,
+				"isFull": false,
+				"isAffix": false,
+				"isKeepAlive": true
+			},
+			"children": [
+				{
+					"path": "/company/info",
+					"name": "companyInfo",
+					"component": "/company/info",
+					"id": "j1",
+					"parentId": "j",
+					"title": "公司信息",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/company/team",
+					"name": "teamMembers",
+					"component": "/company/team",
+					"id": "j2",
+					"parentId": "j",
+					"title": "团队成员",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				}
+			]
+		},
+		{
+			"path": "/product",
+			"name": "product",
+			"redirect": "/product/list",
+			"id": "k",
+			"parentId": null,
+			"title": "产品服务",
+			"parentCheck": true,
+			"meta": {
+				"icon": "Goods",
+				"isLink": "",
+				"isHide": false,
+				"isFull": false,
+				"isAffix": false,
+				"isKeepAlive": true
+			},
+			"children": [
+				{
+					"path": "/product/list",
+					"name": "products",
+					"component": "/product/list",
+					"id": "k1",
+					"parentId": "k",
+					"title": "产品管理",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/product/service",
+					"name": "services",
+					"component": "/product/service",
+					"id": "k2",
+					"parentId": "k",
+					"title": "服务管理",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/product/solution",
+					"name": "solutions",
+					"component": "/product/solution",
+					"id": "k3",
+					"parentId": "k",
+					"title": "解决方案",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				}
+			]
+		},
+		{
+			"path": "/news",
+			"name": "news",
+			"component": "/news/index",
+			"id": "l",
+			"parentId": null,
+			"title": "新闻动态",
+			"meta": {
+				"icon": "Reading",
+				"isLink": "",
+				"isHide": false,
+				"isFull": false,
+				"isAffix": false,
+				"isKeepAlive": true
+			}
+		},
+		{
+			"path": "/case",
+			"name": "case",
+			"redirect": "/case/list",
+			"id": "m",
+			"parentId": null,
+			"title": "客户案例",
+			"parentCheck": true,
+			"meta": {
+				"icon": "DocumentChecked",
+				"isLink": "",
+				"isHide": false,
+				"isFull": false,
+				"isAffix": false,
+				"isKeepAlive": true
+			},
+			"children": [
+				{
+					"path": "/case/list",
+					"name": "cases",
+					"component": "/case/list",
+					"id": "m1",
+					"parentId": "m",
+					"title": "案例管理",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/case/testimonial",
+					"name": "testimonials",
+					"component": "/case/testimonial",
+					"id": "m2",
+					"parentId": "m",
+					"title": "客户评价",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				}
+			]
+		},
+		{
+			"path": "/contact",
+			"name": "contact",
+			"redirect": "/contact/info",
+			"id": "n",
+			"parentId": null,
+			"title": "联系我们",
+			"parentCheck": true,
+			"meta": {
+				"icon": "Phone",
+				"isLink": "",
+				"isHide": false,
+				"isFull": false,
+				"isAffix": false,
+				"isKeepAlive": true
+			},
+			"children": [
+				{
+					"path": "/contact/info",
+					"name": "contactInfo",
+					"component": "/contact/info",
+					"id": "n1",
+					"parentId": "n",
+					"title": "联系信息",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/contact/message",
+					"name": "messages",
+					"component": "/contact/message",
+					"id": "n2",
+					"parentId": "n",
+					"title": "在线留言",
+					"meta": {
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				}
+			]
+		},
+		{
+			"path": "/recruit",
+			"name": "recruit",
+			"component": "/recruit/index",
+			"id": "o",
+			"parentId": null,
+			"title": "招聘信息",
+			"meta": {
+				"icon": "UserFilled",
+				"isLink": "",
+				"isHide": false,
+				"isFull": false,
+				"isAffix": false,
+				"isKeepAlive": true
+			}
+		},		
+		{
 			"path": "/auth",
 			"name": "auth",
 			"redirect": "/auth/button",
