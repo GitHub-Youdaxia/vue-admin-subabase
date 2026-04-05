@@ -593,8 +593,21 @@ h3 {
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px;
   margin-top: 50px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.footer p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 16px;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 /* 响应式设计 */
