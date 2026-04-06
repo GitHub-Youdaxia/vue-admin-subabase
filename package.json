@@ -1,8 +1,8 @@
 {
-  "name": "vue-diverse-admin",
+  "name": "hebeihandan",
   "private": true,
   "version": "0.0.2",
-  "description": "vue-diverse-admin后台管理系统",
+  "description": "hebeihandan后台管理系统",
   "author": "<1164095457@qq.com>",
   "scripts": {
     "dev": "vite",
