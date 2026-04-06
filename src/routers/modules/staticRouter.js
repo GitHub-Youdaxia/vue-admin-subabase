@@ -18,6 +18,15 @@ export const staticRouter = [
 		}
 	},
 	{
+		path: "/frontWeb",
+		name: "frontWeb",
+		component: () => import("@/views/frontWeb/index.vue"),
+		meta: {
+			title: "公司门户",
+			isFull: true
+		}
+	},
+	{
 		path: "/layout",
 		name: "layout",
 		component: () => import("@/layouts/index.vue"),
